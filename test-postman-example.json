@@ -1,0 +1,15 @@
+{
+  "GlobalVariables": [
+    {
+      "id": "1",
+      "BASE_URL": "https://your-app.com",
+      "USERNAME": "autovendorC01",
+      "PASSWORD": "dragonfly2",
+      "Transaction_ID": "CNY202507091610081",
+      "ENVIRONMENT": "staging",
+      "Withdrawl_ID": "W123432",
+      "Withdrawl": "W123",
+      "ID": "1234"
+    }
+  ]
+} 
