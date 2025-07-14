@@ -1,14 +1,12 @@
- # Use official OpenJDK 17 image
-FROM eclipse-temurin:17-jdk
-
-# Set working directory
+# Build stage
+FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
+COPY . .
+RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
 
-# Copy the built JAR file into the container
-COPY target/global-variables-api-1.0.0.jar app.jar
-
-# Expose the port (Render will set $PORT)
+# Package stage
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=build /app/target/global-variables-api-1.0.0.jar app.jar
 EXPOSE 8080
-
-# Run the JAR file, using the PORT environment variable
 CMD ["sh", "-c", "java -jar app.jar --server.port=$PORT"] 
