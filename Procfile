@@ -1,1 +1,1 @@
-web: java -jar target/GlobalVariablesAPI-0.0.1-SNAPSHOT.jar
+web: java -jar target/global-variables-api-1.0.0.jar

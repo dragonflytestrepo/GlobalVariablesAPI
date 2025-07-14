@@ -52,6 +52,49 @@ The API uses HTTP Basic Authentication:
 - **Username**: `admin`
 - **Password**: `password`
 
+## Deployment
+
+### Deploying to Render
+
+This project is configured for easy deployment to Render:
+
+1. **Push your code to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Add Render deployment configuration"
+   git push origin main
+   ```
+
+2. **Connect to Render:**
+   - Go to [render.com](https://render.com)
+   - Sign up/Login with your GitHub account
+   - Click "New +" and select "Web Service"
+   - Connect your GitHub repository
+
+3. **Configure the service:**
+   - **Name**: `global-variables-api` (or your preferred name)
+   - **Environment**: `Java`
+   - **Build Command**: `mvn clean package -DskipTests`
+   - **Start Command**: `java -jar target/global-variables-api-1.0.0.jar`
+   - **Plan**: Free (or choose your preferred plan)
+
+4. **Environment Variables** (optional):
+   - `PORT`: Will be automatically set by Render
+   - `JAVA_VERSION`: 17 (already configured)
+
+5. **Deploy:**
+   - Click "Create Web Service"
+   - Render will automatically build and deploy your application
+
+Your API will be available at: `https://your-app-name.onrender.com`
+
+### Deployment Files
+
+The following files are included for Render deployment:
+- `render.yaml`: Render configuration
+- `Procfile`: Process definition for Render
+- Updated `application.properties`: Uses `PORT` environment variable
+
 ## API Endpoints
 
 ### 1. Store/Update Global Variables
