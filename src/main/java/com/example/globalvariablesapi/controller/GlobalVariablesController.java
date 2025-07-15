@@ -52,6 +52,21 @@ public class GlobalVariablesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
+    /**
+     * PATCH endpoint to update/add key-value pairs for an existing ID
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<Map<String, Map<String, String>>> patchGlobalVariables(@PathVariable String id, @RequestBody Map<String, String> updates) {
+        if (!globalVariablesService.exists(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        globalVariablesService.patchGlobalVariables(id, updates);
+        Map<String, String> updatedVars = globalVariablesService.getGlobalVariables(id);
+        Map<String, Map<String, String>> response = new HashMap<>();
+        response.put(id, updatedVars);
+        return ResponseEntity.ok(response);
+    }
     
     /**
      * GET endpoint to retrieve global variables by ID

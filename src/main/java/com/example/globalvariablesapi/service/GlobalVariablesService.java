@@ -29,6 +29,16 @@ public class GlobalVariablesService {
             });
         }
     }
+
+    /**
+     * Patch (partial update) global variables for a given ID
+     */
+    public void patchGlobalVariables(String id, Map<String, String> updates) {
+        storage.computeIfPresent(id, (key, existing) -> {
+            existing.putAll(updates);
+            return existing;
+        });
+    }
     
     /**
      * Get global variables for a given ID
